@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Aarya's Galaxy</title>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: radial-gradient(circle at top, #243b7a, #020617 70%);
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 25px;
+            background: rgba(2, 6, 23, 0.85);
+            backdrop-filter: blur(10px);
+        }
+
+        nav h2 {
+            margin: 0;
+            color: silver;
+            font-size: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 14px;
+        }
+
+        /* Floating stars */
+
+        .star {
+            position: fixed;
+            color: white;
+            pointer-events: none;
+            animation: floatStar linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes floatStar {
+
+            from {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            80% {
+                opacity: 1;
+            }
+
+            to {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+
+        #home,
+        #explore,
+        #about,
+        #contact,
+        .cards,
+        footer {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Stars */
+
+        .stars {
+            font-size: 30px;
+            letter-spacing: 12px;
+            padding-top: 60px;
+            margin-bottom: 30px;
+            animation: sparkle 2s infinite alternate;
+        }
+
+        @keyframes sparkle {
+
+            from {
+                opacity: 0.4;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Hero */
+
+        .hero {
+            max-width: 600px;
+            margin: auto;
+            padding: 40px 25px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+        }
+
+        h1 {
+            font-size: 42px;
+            text-shadow: 0 0 10px silver, 0 0 25px #6ea8ff;
+        }
+
+        .hero p {
+            font-size: 20px;
+        }
+
+        /* Button */
+
+        button {
+            background-color: white;
+            color: #07152f;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 30px;
+            font-size: 17px;
+            box-shadow: 0 0 20px silver;
+            cursor: pointer;
+        }
+
+        /* Sections */
+
+        .about {
+            margin: 80px auto 30px;
+            max-width: 700px;
+            padding: 20px;
+        }
+
+        .about h2,
+        .contact h2 {
+            color: silver;
+            text-shadow: 0 0 15px #6ea8ff;
+        }
+
+        .about p {
+            line-height: 1.6;
+        }
+
+        /* Cards */
+
+        .cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 20px;
+        }
+
+        .card {
+            width: 180px;
+            padding: 25px 15px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .card.active {
+            transform: translateY(-12px) scale(1.04);
+            box-shadow: 0 0 30px #6ea8ff;
+        }
+
+        .card h3 {
+            color: silver;
+            font-size: 23px;
+        }
+
+        .card p {
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* Contact */
+
+        .contact {
+            max-width: 600px;
+            margin: 80px auto;
+            padding: 30px 20px;
+        }
+
+        .contact-box {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 30px 20px;
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.08);
+        }
+
+        input,
+        textarea {
+            width: 90%;
+            padding: 14px;
+            margin: 10px 0;
+            border-radius: 12px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        .send-button {
+            margin-top: 10px;
+        }
+
+        #formMessage {
+            color: silver;
+            font-size: 18px;
+        }
+
+        /* Footer */
+
+        footer {
+            margin-top: 80px;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.25);
+            color: silver;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 600px) {
+
+            nav {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            nav a {
+                margin: 0 6px;
+                font-size: 13px;
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .hero {
+                margin: 0 15px;
+                padding: 30px 18px;
+            }
+
+            .cards {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .card {
+                width: 80%;
+            }
+
+            .contact {
+                margin: 60px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+
+    <nav>
+
+        <h2>🌌 Aarya's Galaxy</h2>
+
+        <div>
+            <a href="#home">Home</a>
+            <a href="#explore">Explore</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Home -->
+
+    <section id="home">
+
+        <div class="stars">
+            ✦　⋆　✧　·　✦　⋆　·　✧
+        </div>
+
+        <div class="hero">
+
+            <h1>Welcome to Aarya's Galaxy</h1>
+
+            <p>Welcome in world of stars</p>
+
+            <button onclick="showJoy()">Joyyy</button>
+
+            <p id="message"></p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Explore -->
+
+    <section id="explore" class="about">
+
+        <h2>✨ Explore the Galaxy ✨</h2>
+
+        <p>
+            A little space where stars shine,
+            dreams grow, and joy begins.
+        </p>
+
+    </section>
+
+
+    <!-- Cards -->
+
+    <div class="cards">
+
+        <div class="card" onclick="activateCard(this)">
+
+            <h3>🌙 Dreams</h3>
+
+            <p>
+                Dream beyond the limits
+                and imagine something beautiful.
+            </p>
+
+        </div>
+
+
+        <div class="card" onclick="activateCard(this)">
+
+            <h3>⭐ Stars</h3>
+
+            <p>
+                Every star has its own story.
+                Keep shining your way.
+            </p>
+
+        </div>
+
+
+        <div class="card" onclick="activateCard(this)">
+
+            <h3>✨ Joy</h3>
+
+            <p>
+                Find little moments of happiness
+                in your everyday life.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- About -->
+
+    <section id="about" class="about">
+
+        <h2>💫 About Aarya's Galaxy</h2>
+
+        <p>
+            A small universe made with creativity,
+            curiosity and a little bit of magic.
+        </p>
+
+    </section>
+
+
+    <!-- Contact -->
+
+    <section id="contact" class="contact">
+
+        <h2>💌 Let's Connect</h2>
+
+        <div class="contact-box">
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Your name"
+            >
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Your email"
+            >
+
+            <textarea
+                id="userMessage"
+                placeholder="Write something..."
+            ></textarea>
+
+            <br>
+
+            <button
+                class="send-button"
+                onclick="sendMessage()"
+            >
+                Send Message 🚀
+            </button>
+
+            <p id="formMessage"></p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        Made with ✨ by Aarya
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script>
+
+        function showJoy() {
+
+            document.getElementById("message").innerHTML =
+                "✨ Welcome to your little galaxy of joy! ✨";
+
+            document.querySelector("button").innerHTML =
+                "Yayyy! ✨";
+        }
+
+
+        function activateCard(card) {
+
+            card.classList.toggle("active");
+
+        }
+
+
+        function sendMessage() {
+
+            let name =
+                document.getElementById("name").value;
+
+            if (name === "") {
+
+                document.getElementById("formMessage").innerHTML =
+                    "Please enter your name first ✨";
+
+            } else {
+
+                document.getElementById("formMessage").innerHTML =
+                    "Thank you, " + name + "! 🚀✨";
+
+            }
+
+        }
+
+
+        /* Floating stars */
+
+        for (let i = 0; i < 25; i++) {
+
+            let star =
+                document.createElement("div");
+
+            star.className = "star";
+
+            star.innerHTML = "✦";
+
+            star.style.left =
+                Math.random() * 100 + "vw";
+
+            star.style.fontSize =
+                (Math.random() * 12 + 8) + "px";
+
+            star.style.animationDuration =
+                (Math.random() * 8 + 6) + "s";
+
+            star.style.animationDelay =
+                (Math.random() * 8) + "s";
+
+            document.body.appendChild(star);
+
+        }
+
+    </script>
+
+</body>
+
+</html>
